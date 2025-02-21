@@ -1,10 +1,10 @@
 === Easy Social Icons ===
-Contributors: cybernetikz
+Contributors: CyberNetikz
 Donate link:
 Tags: easy social icons, easy social icon, social icons, social share, follow us, custom social icons, social media icons
 Requires at least: 3.5
-Tested up to: 6.5
-Stable tag: 3.2.6
+Tested up to: 6.7.1
+Stable tag: 3.2.7
 
 Upload your own social media icons or choose from font-awesome. Use widget|shortcode to place icons anywhere(sidebar, header, footer, page) in theme.
 
@@ -65,16 +65,19 @@ If you are using wordpress version lower than 3.5 please use Easy social Icon ve
 
 == Screenshots ==
 
-1. display social icons in sidebar using widget
-2. display social icons in sidebar using widget different icons shape
-3. display social icons in sidebar using widget different icons colors
-4. manage icons page layout
-5. add new icon page layout
-6. sort icons usign drag drop
-7. plugins settings page layout
-8. add Easy Social Icon widget to sidebar using drag drop
+1. Display social icons in sidebar using widget
+2. Display social icons in sidebar using widget different icons shape
+3. Display social icons in sidebar using widget different icons colors
+4. Manage icons page layout
+5. Add new icon page layout
+6. Sort icons using drag drop
+7. Plugins settings page layout
+8. Add Easy Social Icon widget to sidebar using drag drop
 
 == Changelog ==
+
+= 3.2.7 =
+* fixed / updated Twitter X icon and TikTok icon
 
 = 3.2.6 =
 * fixed / updated security issue BAC+CSRF
@@ -161,7 +164,7 @@ thanks to @ov3rfly
 * Google Social Profile Links feature added
 * "add new" button added to "All Icons" page
 * arrow icon added in "All Icons" page to sort icon easily
-* auto fillup/suggestion added in "Add New Icon" for "title" and "url" field
+* auto fill-up/suggestion added in "Add New Icon" for "title" and "url" field
 * add client side validation in "Add New Icon" for for "title", "icon" and "url" field
 * update variables name to fix conflict with other plugins
 * update php code for optimal performance
@@ -186,7 +189,7 @@ thanks to @ov3rfly
 * Layout is updated in sort icons page
 * Screenshot updated
 * CSS updated
-* Javascript updated
+* JavaScript updated
 
 = 1.2.4.1 =
 * Banner added in plugins pages
@@ -198,7 +201,7 @@ thanks to @ov3rfly
 * CSS fix
 
 = 1.2.3 =
-* Rsponsive feature added
+* Responsive feature added
 * Security updates
 
 = 1.2.2 =
@@ -217,7 +220,7 @@ thanks to @ov3rfly
 
 = 1.0 =
 * Add sorting icon using drag drop
-* Built in 5 social icons preloaded as sample icon, to save your time (facebook, twitter, linkedin, flickr, youtube).
+* Built in 5 social icons preloaded as sample icon, to save your time (Facebook, Twitter, LinkedIn, Flickr, YouTube).
 * Now you can display the icons split by rows, input the number of rows in the plugins admin option page
-* Css fixes
+* CSS fixes
 * Icons width / height adjustment fix
