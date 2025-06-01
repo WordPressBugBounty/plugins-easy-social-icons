@@ -417,21 +417,26 @@
       <li><a href="#telegram"><i class="fab fa-telegram"></i><br><span class="label">Telegram</span></a></li>
       <li><a href="#telegram-plane"><i class="fab fa-telegram-plane"></i><br><span class="label">Telegram Plane</span></a></li>
       <li><a href="#tencent-weibo"><i class="fab fa-tencent-weibo"></i><br><span class="label">Tencent Weibo</span></a></li>
-      <li><a href="#tiktok"><i class="fab fa-tiktok"></i><br><span class="label">TikTok</span></a></li>
       <li><a href="#the-red-yeti"><i class="fab fa-the-red-yeti"></i><br><span class="label">The Red Yeti</span></a></li>
       <li><a href="#themeco"><i class="fab fa-themeco"></i><br><span class="label">Themeco</span></a></li>
       <li><a href="#themeisle"><i class="fab fa-themeisle"></i><br><span class="label">ThemeIsle</span></a></li>
       <li><a href="#think-peaks"><i class="fab fa-think-peaks"></i><br><span class="label">Think Peaks</span></a></li>
       <li><a href="#trade-federation"><i class="fab fa-trade-federation"></i><br><span class="label">Trade Federation</span></a></li>
       <li><a href="#trello"><i class="fab fa-trello"></i><br><span class="label">Trello</span></a></li>
+
       <!-- <li><a href="#tripadvisor"><i class="fab fa-tripadvisor"></i><br><span class="label">TripAdvisor</span></a></li> -->
+
       <li><a href="#tumblr"><i class="fab fa-tumblr"></i><br><span class="label">Tumblr</span></a></li>
       <li><a href="#tumblr-square"><i class="fab fa-tumblr-square"></i><br><span class="label">Tumblr Square</span></a></li>
       <li><a href="#twitch"><i class="fab fa-twitch"></i><br><span class="label">Twitch</span></a></li>
+
       <li><a href="#twitter"><i class="fab fa-twitter"></i><br><span class="label">Twitter</span></a></li>
       <li><a href="#twitter-square"><i class="fab fa-twitter-square"></i><br><span class="label">Twitter Square</span></a></li>
+
       <li><a href="#x-twitter"><i class="fa-brands fa-x-twitter"></i><br><span class="label">X Twitter</span></a></li>
       <li><a href="#square-x-twitter"><i class="fa-brands fa-square-x-twitter"></i><br><span class="label">Square X Twitter</span></a></li>
+
+      <li><a href="#tiktok"> <i class="fa-brands fa-tiktok"></i><br><span class="label">Tiktok</span></a></li>
       <li><a href="#threads"> <i class="fa-brands fa-threads"></i><br><span class="label">Threads</span></a></li>
       <li><a href="#typo3"><i class="fab fa-typo3"></i><br><span class="label">Typo3</span></a></li>
       <li><a href="#uber"><i class="fab fa-uber"></i><br><span class="label">Uber</span></a></li>
@@ -486,8 +491,8 @@
       <li><a href="#yoast"><i class="fab fa-yoast"></i><br><span class="label">Yoast</span></a></li>
       <li><a href="#youtube"><i class="fab fa-youtube"></i><br><span class="label">YouTube</span></a></li>
       <li><a href="#youtube-square"><i class="fab fa-youtube-square"></i><br><span class="label">YouTube Square</span></a></li>
-      <li><a href="#waze"><i class="fa-brands fa-waze"></i><br><span class="label">Waze</span></a></li>
       <li><a href="#zhihu"><i class="fab fa-zhihu"></i><br><span class="label">Zhihu</span></a></li>
+      <li><a href="#waze"><i class="fa-brands fa-waze"></i><br><span class="label">Waze</span></a></li>
     </ul>
   </div>
 </section>

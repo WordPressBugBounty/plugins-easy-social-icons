@@ -1,30 +1,51 @@
 <?php
-
-if (!defined('WP_UNINSTALL_PLUGIN')) {
-    die;
+if (! defined('WP_UNINSTALL_PLUGIN')) {
+	exit;
 }
- 
-$cnss_esi_settings = array(
-	'cnss-width' => '32',
-	'cnss-height' => '32',
-	'cnss-margin' => '4',
-	'cnss-row-count' => '1',
-	'cnss-vertical-horizontal' => 'horizontal',
-	'cnss-text-align' => 'center',
-	'cnss-social-profile-links' => '0',
-	'cnss-social-profile-type' => 'Person',
-	'cnss-icon-bg-color' => '#666666',
-	'cnss-icon-bg-hover-color' => '#ffffff',
-	'cnss-icon-color' => '#ffffff',
-	'cnss-icon-hover-color' => '#ffffff',
-	'cnss-icon-shape' => 'square',
-	'cnss-original-icon-color' => '1'
-);
 
-foreach ($cnss_esi_settings as $key => $value) {
-	delete_option(trim($key));
-}
- 
 global $wpdb;
-$table_name = $wpdb->prefix . "cn_social_icon";
-$wpdb->query("DROP TABLE IF EXISTS {$table_name}");
+
+// 1) Delete every option this plugin ever created
+$options_to_delete = [
+	'cnss-width',
+	'cnss-height',
+	'cnss-margin',
+	'cnss-row-count',
+	'cnss-vertical-horizontal',
+	'cnss-text-align',
+	'cnss-social-profile-links',
+	'cnss-social-profile-type',
+	'cnss-icon-bg-color',
+	'cnss-icon-bg-hover-color',
+	'cnss-icon-color',
+	'cnss-icon-hover-color',
+	'cnss-icon-shape',
+	'cnss-icon-animation',
+	'cnss-original-icon-color',
+	'cnss-icon-name-show',
+	'cnss-icon-name-font-color',
+	'cnss-icon-name-font-size',
+	'cnss-icon-floating-option'
+];
+
+foreach ($options_to_delete as $opt) {
+	delete_option($opt);
+}
+
+// 2) Drop our custom tables
+$wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}cn_social_icon");
+$wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}cn_social_share_post");
+
+// 3) If multisite, repeat for each blog
+if (is_multisite()) {
+	$sites = get_sites();
+	foreach ($sites as $site) {
+		switch_to_blog($site->blog_id);
+		foreach ($options_to_delete as $opt) {
+			delete_option($opt);
+		}
+		$wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}cn_social_icon");
+		$wpdb->query("DROP TABLE IF EXISTS {$wpdb->prefix}cn_social_share_post");
+		restore_current_blog();
+	}
+}

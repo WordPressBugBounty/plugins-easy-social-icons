@@ -1,16 +1,24 @@
 === Easy Social Icons ===
-Contributors: CyberNetikz
+Contributors: cybernetikz
 Donate link:
 Tags: easy social icons, easy social icon, social icons, social share, follow us, custom social icons, social media icons
 Requires at least: 3.5
-Tested up to: 6.7.1
-Stable tag: 3.2.7
+Tested up to: 6.8.1
+Stable tag: 3.2.8
 
 Upload your own social media icons or choose from font-awesome. Use widget|shortcode to place icons anywhere(sidebar, header, footer, page) in theme.
 
 == Description ==
 
 You can upload your own social icon or font-awesome social icons, set your social URL, choose whether you want to display vertically or horizontally, left or right or center aligned, icon width height or margins.
+
+## Easy Social Icons: THE #1 WordPress Social Icons Plugin
+
+<strong>Boost your social presence with the most user-friendly and customizable social icons plugin for WordPress.</strong>
+
+<strong>Easy Social Icons</strong> is the ultimate solution for adding beautiful, fully customizable social media icons to your WordPress site—no coding required. Whether you're a blogger, business owner, or developer, this lightweight plugin makes it easy to connect your audience with your social media platforms in just a few clicks.
+
+Easy Social Icons Free gives you everything you need to manage and display your social icons, while the <strong><a target="_blank" href="https://www.cybernetikz.com/store/">Easy Social Icons Premium</a></strong> version unlocks advanced features, tools, and extended functionality.
 
 You can use the shortcode <strong>[cn-social-icon]</strong> in page/post, template tag for PHP file, <strong>&lt;?php if ( function_exists('cn_social_icon') ) echo cn_social_icon(); ?&gt;</strong> also you can use the widget <strong>"Easy Social Icons"</strong> for the sidebar.
 
@@ -19,17 +27,17 @@ You can use the shortcode <strong>[cn-social-icon]</strong> in page/post, templa
 If you are using <strong>wordpress version lower than 3.5</strong> please use "Easy Social Icons" version
 <a href="https://downloads.wordpress.org/plugin/easy-social-icons.1.1.zip">1.1</a>
 
-> <strong><a target="_blank" href="http://www.cybernetikz.com/wordpress-magento-plugins/wordpress-plugins/easy-social-icons/#disqus_thread">For faster support please contact us here.</a></strong>
+> <strong><a target="_blank" href="https://www.cybernetikz.com/contact/">For faster support please contact us here.</a></strong>
 
 <strong>Cover original color for 100+ font-awesome brand icons</strong>
 
-= Key Features =
+= FREE FEATURES =
 
 * You can upload your own social icons, set URL for that icon with sort order, target windows etc.
 * Or select font icons from font-awesome (Cover original color for 100+ font-awesome brand icons)
-* Create mutiple icons set using widget with different settings
-* Use mutiple shortcode in page/post with different settings
-* Use mutiple PHP template tag in PHP themes files with different settings
+* Create multiple icons set using widget with different settings
+* Use multiple shortcode in page/post with different settings
+* Use multiple PHP template tag in PHP themes files with different settings
 * Works with responsive website
 * You will get add/edit/delete option for icons
 * You can set the icon width and height to fit in your template/design perfectly
@@ -39,8 +47,59 @@ If you are using <strong>wordpress version lower than 3.5</strong> please use "E
 * Sort social media icons using drag drop
 * Also if you are familiar with PHP code then you can use the template tag to place the social icon set anywhere in the PHP template file
 * Google Social Profile Links feature added, so if someone search your website/blog in google it will show your social icons also.
+* test
 
-Please visit our site <a target="_blank" href="http://www.cybernetikz.com/blog/wordpress-plugins-easy-social-icons/">www.cybernetikz.com/</a>
+= PREMIUM FEATURES =
+
+Unlock even more power and customization with the Premium version of Easy Social Icons!
+
+##### Advanced Customization Options
+
+<strong><i>Icon Customization:</i></strong>
+* Custom icon styles (shadow, gradient, 3D effect).
+* Advanced hover effects (animations, color transitions).
+* Entrance and hover animations (bounce, fade, zoom).
+* Different icon shapes (hexagonal, triangle, etc.).
+
+<strong><i>Icon Size Variability:</i></strong>
+* Responsive scaling options for different screen sizes. ( Add pixel size for Tab and Mobile )
+* Custom pixel-based size selection.
+
+##### Premium Icon Sets
+* Access to exclusive high-quality icon libraries.
+* Custom-designed icons that match different website themes.
+* Regular updates with new social media platform icons.
+* Add SVG icon
+Performance Optimization
+* Lightweight and optimized icons to improve page speed.
+* Lazy loading for social icons to enhance performance.
+
+##### Multiple Icon Placement Options
+* Sticky floating social icons (left, right, bottom, etc.).
+* Inline placement within content with shortcodes.
+* Widget-specific placement with enhanced control.
+
+
+##### Additional Social Icon
+* Added all social font awesome icon in the list.
+
+##### Social Icon show with Text
+
+##### Multisite support with social icon
+
+
+##### Social Sharing Enhancements
+* One-click social sharing buttons for posts and pages.
+* Social share count display.
+* Predefined sharing templates with customizable styles.
+
+
+Plus, enjoy **priority support** and **regular updates** for enhanced security and compatibility.
+
+### <strong><a target="_blank" href="https://www.cybernetikz.com/store/">Get Easy Social Icons Premium</a></strong>
+
+
+Please visit our site <a target="_blank" href="http://www.cybernetikz.com/">www.cybernetikz.com/</a>
 
 == Installation ==
 
@@ -65,19 +124,16 @@ If you are using wordpress version lower than 3.5 please use Easy social Icon ve
 
 == Screenshots ==
 
-1. Display social icons in sidebar using widget
-2. Display social icons in sidebar using widget different icons shape
-3. Display social icons in sidebar using widget different icons colors
-4. Manage icons page layout
-5. Add new icon page layout
-6. Sort icons using drag drop
-7. Plugins settings page layout
-8. Add Easy Social Icon widget to sidebar using drag drop
+1. display social icons in sidebar using widget
+2. display social icons in sidebar using widget different icons shape
+3. display social icons in sidebar using widget different icons colors
+4. manage icons page layout
+5. add new icon page layout
+6. sort icons usign drag drop
+7. plugins settings page layout
+8. add Easy Social Icon widget to sidebar using drag drop
 
 == Changelog ==
-
-= 3.2.7 =
-* fixed / updated Twitter X icon and TikTok icon
 
 = 3.2.6 =
 * fixed / updated security issue BAC+CSRF
@@ -164,7 +220,7 @@ thanks to @ov3rfly
 * Google Social Profile Links feature added
 * "add new" button added to "All Icons" page
 * arrow icon added in "All Icons" page to sort icon easily
-* auto fill-up/suggestion added in "Add New Icon" for "title" and "url" field
+* auto fillup/suggestion added in "Add New Icon" for "title" and "url" field
 * add client side validation in "Add New Icon" for for "title", "icon" and "url" field
 * update variables name to fix conflict with other plugins
 * update php code for optimal performance
@@ -189,7 +245,7 @@ thanks to @ov3rfly
 * Layout is updated in sort icons page
 * Screenshot updated
 * CSS updated
-* JavaScript updated
+* Javascript updated
 
 = 1.2.4.1 =
 * Banner added in plugins pages
@@ -201,7 +257,7 @@ thanks to @ov3rfly
 * CSS fix
 
 = 1.2.3 =
-* Responsive feature added
+* Rsponsive feature added
 * Security updates
 
 = 1.2.2 =
@@ -220,7 +276,7 @@ thanks to @ov3rfly
 
 = 1.0 =
 * Add sorting icon using drag drop
-* Built in 5 social icons preloaded as sample icon, to save your time (Facebook, Twitter, LinkedIn, Flickr, YouTube).
+* Built in 5 social icons preloaded as sample icon, to save your time (facebook, twitter, linkedin, flickr, youtube).
 * Now you can display the icons split by rows, input the number of rows in the plugins admin option page
-* CSS fixes
+* Css fixes
 * Icons width / height adjustment fix
