@@ -1,18 +1,14 @@
+/* plugin version 3.2.9 */
 .clear {
   clear: both;
 }
-
 table.cnss-social-icon tr td,
 table.cnss-social-icon,
 table.cnss-social-icon tr {
   padding: 0 !important;
-
   margin: 0 !important;
-
   border: none !important;
-
   vertical-align: middle !important;
-
   background: none !important;
 }
 
@@ -33,75 +29,43 @@ table.cnss-social-icon tr td a:hover img {
 
 ul.cnss-social-icon {
   margin: 0;
-
   padding: 0;
-
   list-style-type: none;
 }
 
-/* ul.cnss-social-icon li a img {
-
-    display: inherit !important;
-
-} */
-
 ul.cnss-social-icon li a {
   border: none !important;
-
   text-decoration: none !important;
 }
 
 ul.cnss-social-icon li:after,
 ul.cnss-social-icon li:before {
   display: none !important;
-
   content: inherit !important;
 }
 
 ul.cnss-social-icon li {
-  vertical-align: top;
-
+  vertical-align: middle;
   float: none !important;
-
   width: auto !important;
-
   margin: 0 !important;
-
   list-style-type: none !important;
-
   border: none !important;
-
   padding: 0 !important;
-
   background: none !important;
-
   /* line-height: normal !important; */
 }
-
-/* ul.cnss-social-icon li a,
-
-ul.cnss-social-icon li a img {
-
-    box-shadow: none !important;
-
-    -webkit-box-shadow: none;
-
-} */
-
-/* font-awesome-icons-settings */
-
 ul.cnss-social-icon li.cn-fa-icon a {
   display: block !important;
-
   text-align: center !important;
-
   -webkit-transition: width 0.5s !important;
-
   transition: all 0.5s !important;
-
   box-sizing: border-box !important;
-
   background-color: #999999 !important;
+}
+
+ul.cnss-social-icon li img {
+  vertical-align: middle;
 }
 
 ul.cnss-social-icon li.cn-fa-icon a.cnss-dropbox {
@@ -542,179 +506,47 @@ ul.cnss-social-icon li.cn-fa-icon a.cnss-wikipedia-w {
   background-color: #000000 !important;
 }
 
-ul.cnss-social-icon li.cn-fa-icon a.cnss-img-tag {
-  background: none;
-  padding: 0px;
-  margin: 0px;
-}
-
 ul.cnss-social-icon li.cn-fa-icon.fade-hover a:hover,
 ul.cnss-social-icon li.cn-custom-icon.fade-hover a:hover {
   opacity: 0.5 !important;
 }
 
-ul.cnss-social-icon li.cn-fa-icon.bounce-hover a:hover,
-ul.cnss-social-icon li.cn-custom-icon.bounce-hover a img:hover {
-  animation: bounce 2s infinite !important;
-  transition: 500ms ease-in-out;
-}
-
-@keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-
-  40% {
-    transform: translateY(-20px);
-  }
-
-  60% {
-    transform: translateY(-10px);
-  }
-}
-
-ul.cnss-social-icon li.cn-fa-icon.zoom-hover a:hover,
-ul.cnss-social-icon li.cn-custom-icon.zoom-hover a img:hover {
-  -moz-transform: scale(1.2) !important;
-  -webkit-transform: scale(1.2) !important;
-  -o-transform: scale(1.2) !important;
-  -ms-transform: scale(1.2) !important;
-  transform: scale(1.2) !important;
-}
-
-ul.cnss-social-icon li.cn-fa-icon.shadow-hover:hover,
-ul.cnss-social-icon li.cn-custom-icon.shadow-hover:hover {
-  /* text-shadow: 0 0 10px #000, 0 0 20px #000, 0 0 30px #000; */
-  /* box-shadow: 5px 5px 8px 5px #888888; */
-  filter: drop-shadow(5px 5px 15px black);
-  transition: 0.5s ease all;
-}
-
-ul.cnss-social-icon li.cn-fa-icon.gradient-hover a:hover,
-ul.cnss-social-icon li.cn-custom-icon.gradient-hover a img:hover {
-  background: -webkit-gradient(
-    linear,
-    left top,
-    left bottom,
-    from(#fff),
-    to(#000)
-  );
-}
-
-ul.cnss-social-icon li.cn-fa-icon.threedeffect-hover a:hover,
-ul.cnss-social-icon li.cn-fa-icon.threedeffect-hover a img:hover {
-  -webkit-animation: rotateAnimation 10s linear infinite !important;
-  animation: rotateAnimation 10s linear infinite !important;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-}
-
-@-webkit-keyframes rotateAnimation {
-  from {
-    -webkit-transform: rotateY(0deg) rotateX(720deg) rotateZ(0deg);
-    transform: rotateY(0deg) rotateX(720deg) rotateZ(0deg);
-  }
-  to {
-    -webkit-transform: rotateY(360deg) rotateX(0deg) rotateZ(360deg);
-    transform: rotateY(360deg) rotateX(0deg) rotateZ(360deg);
-  }
-}
-
-@keyframes rotateAnimation {
-  from {
-    -webkit-transform: rotateY(0deg) rotateX(720deg) rotateZ(0deg);
-    transform: rotateY(0deg) rotateX(720deg) rotateZ(0deg);
-  }
-  to {
-    -webkit-transform: rotateY(360deg) rotateX(0deg) rotateZ(360deg);
-    transform: rotateY(360deg) rotateX(0deg) rotateZ(360deg);
-  }
-}
-/* 
-@media only screen and (max-width: 1023px) {
-  ul.cnss-social-icon li.cn-fa-icon a,
-  li.cn-custom-icon a img {
-    width: 30px !important;
-    height: 30px !important;
-    padding: 4px 0px !important;
-    line-height: 24px !important;
-  }
-
-  ul.cnss-social-icon li.cn-fa-icon a i {
-    font-size: 16px !important;
-  }
-
-  ul.cnss-social-icon li {
-    line-height: normal !important;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  ul.cnss-social-icon li.cn-fa-icon a {
-    padding: 4px 0px !important;
-    line-height: 20px !important;
-  }
-
-  ul.cnss-social-icon li {
-    line-height: normal !important;
-  }
-
-  ul.cnss-social-icon li.cn-fa-icon a i {
-    font-size: 16px !important;
-  }
-} */
 
 /* Floating Social Icons Positions */
 
 .cnss-social-icon[class*="position-"] {
   position: fixed;
-
   z-index: 1000;
-
   margin: 0 !important;
-
   list-style: none;
-
   transition: all 0.3s ease-in-out;
 }
 
 .cnss-social-icon.position-bottom-left {
   bottom: 20px;
-
   left: 20px;
 }
 
 .cnss-social-icon.position-bottom-right {
   bottom: 20px;
-
   right: 20px;
 }
 
 .cnss-social-icon.position-left-middle {
   top: 50%;
-
   left: 20px;
-
   transform: translateY(-50%);
 }
 
 .cnss-social-icon.position-right-middle {
   top: 50%;
-
   right: 20px;
-
   transform: translateY(-50%);
 }
 
 .cnss-social-icon.position-bottom-middle {
   bottom: 20px;
-
   left: 50%;
-
   transform: translateX(-50%);
 }
 
@@ -723,16 +555,13 @@ ul.cnss-social-icon li.cn-fa-icon.threedeffect-hover a img:hover {
 @media (max-width: 768px) {
   .cnss-social-icon[class*="position-"] {
     bottom: 10px !important;
-
     top: auto !important;
-
     transform: none !important;
   }
 
   .cnss-social-icon.position-left-middle,
   .cnss-social-icon.position-right-middle {
     left: 10px;
-
     right: 10px;
   }
 }
@@ -772,81 +601,44 @@ ul.cnss-social-icon li.cn-fa-icon.threedeffect-hover a img:hover {
 ul.cnss-social-icon.position-bottom-left li .floating-name-show,
 ul.cnss-social-icon.position-left-middle li .floating-name-show {
   display: inline-block;
-
   position: absolute;
-
   left: calc(100% + 2px);
-
-  /* 10px gap from the icon */
-
   top: 50%;
-
-  /* Center vertically */
-
   transform: translate(-20px, -50%);
-
-  /* Start left and vertically centered */
-
   opacity: 0;
-
   transition: transform 0.3s ease, opacity 0.3s ease;
-
   white-space: nowrap;
 }
 
 ul.cnss-social-icon.position-bottom-right li .floating-name-show,
 ul.cnss-social-icon.position-right-middle li .floating-name-show {
   display: inline-block;
-
   position: absolute;
-
   right: calc(100% + 2px);
-
-  /* 10px gap from the icon */
-
   top: 50%;
-
-  /* Center vertically */
-
   transform: translate(20px, -50%);
-
-  /* Start right and vertically centered */
-
   opacity: 0;
-
   transition: transform 0.3s ease, opacity 0.3s ease;
-
   white-space: nowrap;
 }
-
-/* Hover state */
 
 ul.cnss-social-icon.position-bottom-left li:hover .floating-name-show,
 ul.cnss-social-icon.position-left-middle li:hover .floating-name-show {
   transform: translate(0, -50%);
-
   opacity: 1;
-
   pointer-events: auto;
 }
 
 ul.cnss-social-icon.position-bottom-right li:hover .floating-name-show,
 ul.cnss-social-icon.position-right-middle li:hover .floating-name-show {
   transform: translate(0, -50%);
-
   opacity: 1;
-
   pointer-events: auto;
 }
 
 span.icon-name {
   text-align: left;
   width: 70px;
-}
-
-.cnss-social-icon br,
-.cnss-social-icon p {
-  display: none;
 }
 
 ul.cnss-social-icon li.cn-fa-icon a.floating-name-link {
@@ -894,7 +686,7 @@ ul.cnss-social-icon li.cn-fa-icon a.floating-name-link {
   margin-bottom: 0;
 }
 .pro-ads .dashicons-yes {
-  color: #46b450; /* WordPress “success” green */
+  color: #46b450; 
   font-size: 18px;
   margin-right: 12px;
   margin-top: 3px;

@@ -4,7 +4,7 @@ Donate link:
 Tags: easy social icons, easy social icon, social icons, social share, follow us, custom social icons, social media icons
 Requires at least: 3.5
 Tested up to: 6.8.1
-Stable tag: 3.2.8
+Stable tag: 3.2.9
 
 Upload your own social media icons or choose from font-awesome. Use widget|shortcode to place icons anywhere(sidebar, header, footer, page) in theme.
 
@@ -47,48 +47,51 @@ If you are using <strong>wordpress version lower than 3.5</strong> please use "E
 * Sort social media icons using drag drop
 * Also if you are familiar with PHP code then you can use the template tag to place the social icon set anywhere in the PHP template file
 * Google Social Profile Links feature added, so if someone search your website/blog in google it will show your social icons also.
-* test
+
 
 = PREMIUM FEATURES =
 
 Unlock even more power and customization with the Premium version of Easy Social Icons!
 
-##### Advanced Customization Options
+#### Advanced Customization Options
 
-<strong><i>Icon Customization:</i></strong>
+**Icon Customization:**
 * Custom icon styles (shadow, gradient, 3D effect).
 * Advanced hover effects (animations, color transitions).
 * Entrance and hover animations (bounce, fade, zoom).
 * Different icon shapes (hexagonal, triangle, etc.).
 
-<strong><i>Icon Size Variability:</i></strong>
+**Icon Size Variability:**
 * Responsive scaling options for different screen sizes. ( Add pixel size for Tab and Mobile )
 * Custom pixel-based size selection.
 
-##### Premium Icon Sets
+#### Premium Icon Sets
 * Access to exclusive high-quality icon libraries.
 * Custom-designed icons that match different website themes.
 * Regular updates with new social media platform icons.
 * Add SVG icon
-Performance Optimization
+
+#### Performance Optimization
 * Lightweight and optimized icons to improve page speed.
 * Lazy loading for social icons to enhance performance.
 
-##### Multiple Icon Placement Options
+#### Multiple Icon Placement Options
 * Sticky floating social icons (left, right, bottom, etc.).
 * Inline placement within content with shortcodes.
 * Widget-specific placement with enhanced control.
 
 
-##### Additional Social Icon
+#### Additional Social Icon
 * Added all social font awesome icon in the list.
 
-##### Social Icon show with Text
+#### Social Icon show with Text
+* Display social media icons alongside their corresponding text labels for better clarity and accessibility.
 
-##### Multisite support with social icon
+#### Multi-site support with social icon
+* Social icons supported across all networked sites.
+* Centralized social sharing control for WordPress networks.
 
-
-##### Social Sharing Enhancements
+#### Social Sharing Enhancements
 * One-click social sharing buttons for posts and pages.
 * Social share count display.
 * Predefined sharing templates with customizable styles.
@@ -124,119 +127,133 @@ If you are using wordpress version lower than 3.5 please use Easy social Icon ve
 
 == Screenshots ==
 
-1. display social icons in sidebar using widget
-2. display social icons in sidebar using widget different icons shape
-3. display social icons in sidebar using widget different icons colors
-4. manage icons page layout
-5. add new icon page layout
-6. sort icons usign drag drop
-7. plugins settings page layout
-8. add Easy Social Icon widget to sidebar using drag drop
+1. Display social icons in the sidebar using a widget
+2. Use a different icon shape for sidebar widgets
+3. Customize icon colors in sidebar widgets
+4. Insert social icons using a shortcode in the Gutenberg Editor
+5. Manage the layout of the icons page
+6. Add a new icon for the page layout
+7. Sort icons using drag-and-drop functionality
+8. Configure plugin settings through a dedicated layout page
+9. Display Easy Social Icons on individual post pages
 
 == Changelog ==
 
+= 3.2.9 =
+* Fixed transparent color for icon image
+* Added rollback option
+
+= 3.2.8 =
+* Fixed / stored XSS vulnerability issues
+* Added multi-site support
+* Update font-awesome latest version
+
+= 3.2.7 =
+* Fixed / updated security issue
+* Added twitter(X) new icon and TikTok icon 
+
 = 3.2.6 =
-* fixed / updated security issue BAC+CSRF
+* Fixed / updated security issue BAC+CSRF
 
 = 3.2.5 =
-* fix / update security issue CVE-2023-33998 and sql prepare issue in debug mode.
+* Fix / update security issue CVE-2023-33998 and sql prepare issue in debug mode.
 thanks to @ov3rfly
 
 = 3.2.4 =
-* fix / update security issue
+* Fix / update security issue
 
 = 3.2.3 =
-* fix / update security issue
+* Fix / update security issue
 
 = 3.2.2 =
-* fix / update security issue
+* Fix / update security issue
 
 = 3.2.1 =
-* fix / update security issue
-* fix security issue (Admin + Stored XSS) and unauthenticated icon deletion
+* Fix / update security issue
+* Fix security issue (Admin + Stored XSS) and unauthenticated icon deletion
 
 = 3.2.0 =
-* fix / update security issue
-* check with latest wordpress version 5.9.2
-* fix security issue (Admin + Stored XSS)
+* Fix / update security issue
+* Check with latest wordpress version 5.9.2
+* Fix security issue (Admin + Stored XSS)
 
 = 3.1.4 =
-* fix/update security issue
-* check with latest wordpress version 5.9.1
-* fix security issue (Admin + SQL Injection)
+* Fix/update security issue
+* Check with latest wordpress version 5.9.1
+* Fix security issue (Admin + SQL Injection)
 
 = 3.1.3 =
-* fix/update security issue
+* Fix/update security issue
 
 = 3.1.2 =
-* check with latest wordpress version 5.8.1
-* fix/update security issue
+* Check with latest wordpress version 5.8.1
+* Fix/update security issue
 
 = 3.1.1 =
-* fix/update security issue
+* Fix/update security issue
 
 = 3.1.0 =
-* fix/update security issue
+* Fix/update security issue
 
 = 3.0.9 =
-* fix/update security issue
-* check with latest wordpress version 5.8
+* Fix/update security issue
+* Check with latest wordpress version 5.8
 
 = 3.0.8 =
-* fix version conflict issue
-* check with latest wordpress version 5.5.1
+* Fix version conflict issue
+* Check with latest wordpress version 5.5.1
 
 = 3.0.7 =
-* fix trademark issue
-* check with latest wordpress version 5.2.3
+* Fix trademark issue
+* Check with latest wordpress version 5.2.3
 
 = 3.0.6 =
-* update font-awesome version 5.7.2
-* fix compatibility issue with php version 7.0
+* Update font-awesome version 5.7.2
+* Fix compatibility issue with php version 7.0
 
 = 3.0.5 =
-* add color to youtube play icon
-* css fix for icons list in admin panel
+* Add color to youtube play icon
+* CSS fix for icons list in admin panel
 
 = 3.0.4 =
-* add email, address, mobile font-awesome icons
-* typo fix
+* Add email, address, mobile font-awesome icons
+* Typo fix
 
 = 3.0.3 =
-* add review and support banner at top
-* add original color for 39 font-awesome brand icons
-* css fix for cybernetikz banner in responsive design
+* Add review and support banner at top
+* Add original color for 39 font-awesome brand icons
+* CSS fix for cybernetikz banner in responsive design
 
 = 3.0.2 =
-* fix v 1.0 & v 1.1 image icon compatibility
+* Fix v 1.0 & v 1.1 image icon compatibility
 
 = 3.0.1 =
-* fix font-awesome icons color for some specific themes
-* automatically set sort order when add new icon
+* Fix font-awesome icons color for some specific themes
+* Automatically set sort order when add new icon
 
 = 3.0.0 =
-* add font awesome icons
-* css fix/update to remove unwanted icon border, shadow for "Twenty Seventeen"
+* Add font awesome icons
+* CSS fix/update to remove unwanted icon border, shadow for "Twenty Seventeen"
 * Google Social Profile Links feature added
-* "add new" button added to "All Icons" page
-* arrow icon added in "All Icons" page to sort icon easily
-* auto fillup/suggestion added in "Add New Icon" for "title" and "url" field
-* add client side validation in "Add New Icon" for for "title", "icon" and "url" field
-* update variables name to fix conflict with other plugins
-* update php code for optimal performance
-* delete plugins table and options data on uninstall
+* "Add new" button added to "All Icons" page
+* Arrow icon added in "All Icons" page to sort icon easily
+* Auto fill-up/suggestion added in "Add New Icon" for "title" and "url" field
+* Add client side validation in "Add New Icon" for for "title", "icon" and "url" field
+* Update variables name to fix conflict with other plugins
+* Update php code for optimal performance
+* Delete plugins table and options data on uninstall
 
 = 2.0.2 =
-* css update to remove unwanted icon border
+* CSS update to remove unwanted icon border
 
 = 2.0.1 =
-* bug fix for icon sorting feature
-* screenshot update
+* Bug fix for icon sorting feature
+* Screenshot update
 
 = 2.0 =
-* New feature added for widget, create mutiple widget instance with different settings
-* New feature added for shortcode, use mutiple shortcode in page/post with different settings
-* New feature added for PHP template tag, use mutiple PHP template tag in PHP themes files with different settings
+* New feature added for widget, create multiple widget instance with different settings
+* New feature added for shortcode, use multiple shortcode in page/post with different settings
+* New feature added for PHP template tag, use multiple PHP template tag in PHP themes files with different settings
 * New feature added for shortcode generate
 * Plugin's settings & instructions page layout is updated
 * "How to use?" section is added in plugin's settings & instructions page
@@ -245,7 +262,7 @@ thanks to @ov3rfly
 * Layout is updated in sort icons page
 * Screenshot updated
 * CSS updated
-* Javascript updated
+* JavaScript updated
 
 = 1.2.4.1 =
 * Banner added in plugins pages
@@ -257,7 +274,7 @@ thanks to @ov3rfly
 * CSS fix
 
 = 1.2.3 =
-* Rsponsive feature added
+* Responsive feature added
 * Security updates
 
 = 1.2.2 =
@@ -272,11 +289,11 @@ thanks to @ov3rfly
 * Remove preloaded sample icon as icon upload method change
 
 = 1.1 =
-* icon upload folder fix
+* Icon upload folder fix
 
 = 1.0 =
 * Add sorting icon using drag drop
 * Built in 5 social icons preloaded as sample icon, to save your time (facebook, twitter, linkedin, flickr, youtube).
 * Now you can display the icons split by rows, input the number of rows in the plugins admin option page
-* Css fixes
+* CSS fixes
 * Icons width / height adjustment fix
