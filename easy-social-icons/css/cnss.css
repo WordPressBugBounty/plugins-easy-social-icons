@@ -511,7 +511,6 @@ ul.cnss-social-icon li.cn-custom-icon.fade-hover a:hover {
   opacity: 0.5 !important;
 }
 
-
 /* Floating Social Icons Positions */
 
 .cnss-social-icon[class*="position-"] {
@@ -686,7 +685,7 @@ ul.cnss-social-icon li.cn-fa-icon a.floating-name-link {
   margin-bottom: 0;
 }
 .pro-ads .dashicons-yes {
-  color: #46b450; 
+  color: #46b450;
   font-size: 18px;
   margin-right: 12px;
   margin-top: 3px;
@@ -724,4 +723,11 @@ ul.cnss-social-icon li.cn-fa-icon a.floating-name-link {
 }
 .cnss_new_prmium p {
   margin: 0px !important;
+}
+.esi-promotion {
+  width: 261px;
+}
+.esi-promotion img {
+  width: 100%;
+  height: auto;
 }

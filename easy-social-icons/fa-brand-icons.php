@@ -59,6 +59,10 @@
       <li><a href="#adversal"><i class="fab fa-adversal"></i><br><span class="label">Adversal</span></a></li>
       <li><a href="#affiliatetheme"><i class="fab fa-affiliatetheme"></i><br><span class="label">affiliatetheme</span></a></li>
       <li><a href="#algolia"><i class="fab fa-algolia"></i><br><span class="label">Algolia</span></a></li>
+      <li><a href="#address-book"><i class="fa fa-address-book" aria-hidden="true"></i> Address Book</a></li>
+      <li><a href="#address-book-o"><i class="fa fa-address-book-o" aria-hidden="true"></i> Address Book</a></li>
+      <li><a href="#address-card"><i class="fa fa-address-card" aria-hidden="true"></i> Address Card</a></li>
+      <li><a href="#address-card-o"><i class="fa fa-address-card-o" aria-hidden="true"></i> Address Card</a></li>
       <li><a href="#alipay"><i class="fab fa-alipay"></i><br><span class="label">Alipay</span></a></li>
       <li><a href="#amazon"><i class="fab fa-amazon"></i><br><span class="label">Amazon</span></a></li>
       <li><a href="#amazon-pay"><i class="fab fa-amazon-pay"></i><br><span class="label">Amazon Pay</span></a></li>
@@ -168,6 +172,8 @@
       <li><a href="#earlybirds"><i class="fab fa-earlybirds"></i><br><span class="label">Earlybirds</span></a></li>
       <li><a href="#ebay"><i class="fab fa-ebay"></i><br><span class="label">eBay</span></a></li>
       <li><a href="#edge"><i class="fab fa-edge"></i><br><span class="label">Edge Browser</span></a></li>
+      <li><a href="#envelope"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Email/Envelope</a></li>
+      <li><a href="#envelope-o"><i class="fa-regular fa-envelope" aria-hidden="true"></i> Email/Envelope</a></li>
       <li><a href="#elementor"><i class="fab fa-elementor"></i><br><span class="label">Elementor</span></a></li>
       <li><a href="#ello"><i class="fab fa-ello"></i><br><span class="label">Ello</span></a></li>
       <li><a href="#ember"><i class="fab fa-ember"></i><br><span class="label">Ember</span></a></li>
@@ -283,6 +289,7 @@
       <li><a href="#linux"><i class="fab fa-linux"></i><br><span class="label">Linux</span></a></li>
       <li><a href="#lyft"><i class="fab fa-lyft"></i><br><span class="label">lyft</span></a></li>
       <li><a href="#magento"><i class="fab fa-magento"></i><br><span class="label">Magento</span></a></li>
+      <li><a href="#mobile"><i class="fa fa-mobile" aria-hidden="true"></i> Mobile</a></li>
       <li><a href="#mailchimp"><i class="fab fa-mailchimp"></i><br><span class="label">Mailchimp</span></a></li>
       <li><a href="#mandalorian"><i class="fab fa-mandalorian"></i><br><span class="label">Mandalorian</span></a></li>
       <li><a href="#markdown"><i class="fab fa-markdown"></i><br><span class="label">Markdown</span></a></li>
@@ -303,6 +310,8 @@
       <li><a href="#modx"><i class="fab fa-modx"></i><br><span class="label">MODX</span></a></li>
       <li><a href="#monero"><i class="fab fa-monero"></i><br><span class="label">Monero</span></a></li>
       <li><a href="#napster"><i class="fab fa-napster"></i><br><span class="label">Napster</span></a></li>
+      <li><a href="#newspaper"><i class="fa-solid fa-newspaper"></i><br><span class="label">NewsPaper</span></a></li>
+      <li><a href="#newspaper"><i class="fa-regular fa-newspaper"></i><br><span class="label">NewsPaper</span></a></li>
       <li><a href="#neos"><i class="fab fa-neos"></i><br><span class="label">Neos</span></a></li>
       <li><a href="#nimblr"><i class="fab fa-nimblr"></i><br><span class="label">Nimblr</span></a></li>
 
@@ -348,6 +357,9 @@
       <li><a href="#qq"><i class="fab fa-qq"></i><br><span class="label">QQ</span></a></li>
       <li><a href="#quinscape"><i class="fab fa-quinscape"></i><br><span class="label">QuinScape</span></a></li>
       <li><a href="#quora"><i class="fab fa-quora"></i><br><span class="label">Quora</span></a></li>
+      <!-- <li><a href="#rss"><i class="fa fa-rss" aria-hidden="true"></i> RSS</a></li> -->
+      <li><a href="#rss"><i class="fa-solid fa-rss" aria-hidden="true"></i> RSS</a></li>
+      <li><a href="#rss-square"><i class="fa fa-rss-square" aria-hidden="true"></i> RSS Square</a></li>
       <li><a href="#r-project"><i class="fab fa-r-project"></i><br><span class="label">R Project</span></a></li>
       <li><a href="#raspberry-pi"><i class="fab fa-raspberry-pi"></i><br><span class="label">Raspberry Pi</span></a></li>
       <li><a href="#ravelry"><i class="fab fa-ravelry"></i><br><span class="label">Ravelry</span></a></li>
@@ -423,9 +435,6 @@
       <li><a href="#think-peaks"><i class="fab fa-think-peaks"></i><br><span class="label">Think Peaks</span></a></li>
       <li><a href="#trade-federation"><i class="fab fa-trade-federation"></i><br><span class="label">Trade Federation</span></a></li>
       <li><a href="#trello"><i class="fab fa-trello"></i><br><span class="label">Trello</span></a></li>
-
-      <!-- <li><a href="#tripadvisor"><i class="fab fa-tripadvisor"></i><br><span class="label">TripAdvisor</span></a></li> -->
-
       <li><a href="#tumblr"><i class="fab fa-tumblr"></i><br><span class="label">Tumblr</span></a></li>
       <li><a href="#tumblr-square"><i class="fab fa-tumblr-square"></i><br><span class="label">Tumblr Square</span></a></li>
       <li><a href="#twitch"><i class="fab fa-twitch"></i><br><span class="label">Twitch</span></a></li>

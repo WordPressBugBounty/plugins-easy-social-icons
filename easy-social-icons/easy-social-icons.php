@@ -3,7 +3,7 @@
 Plugin Name: Easy Social Icons
 Plugin URI: http://www.cybernetikz.com
 Description: You can upload your own social icon, set your social URL, choose weather you want to display vertical or horizontal. You can use the shortcode <strong>[cn-social-icon]</strong> in page/post, template tag for php file <strong>&lt;?php if ( function_exists('cn_social_icon') ) echo cn_social_icon(); ?&gt;</strong> also you can use the widget <strong>"Easy Social Icons"</strong> for sidebar.
-Version: 3.2.9
+Version: 4.0.0
 Author: CyberNetikz
 Author URI: http://www.cybernetikz.com
 License: GPL2
@@ -21,133 +21,147 @@ add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'cnss_add_single_
 
 function cnss_add_single_rollback_link($links)
 {
-    $plugin_data = get_plugin_data(__FILE__);
-    $current_version = $plugin_data['Version'];
+	$plugin_data = get_plugin_data(__FILE__);
+	$current_version = $plugin_data['Version'];
 
-    $previous_version = cnss_get_immediate_previous_version($current_version);
+	$previous_version = cnss_get_immediate_previous_version($current_version);
 
-    if ($previous_version) {
-        $zip_url = "https://downloads.wordpress.org/plugin/easy-social-icons.{$previous_version}.zip";
+	if ($previous_version) {
+		$zip_url = "https://downloads.wordpress.org/plugin/easy-social-icons.{$previous_version}.zip";
 
-        // Optionally check if the ZIP exists
-        if (cnss_remote_file_exists($zip_url)) {
-            $rollback_url = wp_nonce_url(
-                admin_url('admin-post.php?action=cnss_rollback_plugin&rollback_version=' . $previous_version),
-                'cnss_rollback_plugin'
-            );
+		// Optionally check if the ZIP exists
+		if (cnss_remote_file_exists($zip_url)) {
+			$rollback_url = wp_nonce_url(
+				admin_url('admin-post.php?action=cnss_rollback_plugin&rollback_version=' . $previous_version),
+				'cnss_rollback_plugin'
+			);
 
-            $links[] = '<a href="' . esc_url($rollback_url) . '" style="color:red;">Rollback to v' . esc_html($previous_version) . '</a>';
-        }
-    }
+			$links[] = '<a href="' . esc_url($rollback_url) . '" style="color:red;">Rollback to v' . esc_html($previous_version) . '</a>';
+		}
+	}
 
-    $links[] = '<a href="' . admin_url('admin.php?page=cnss_social_icon_option') . '">' . __('Settings') . '</a>';
-    return $links;
+	$links[] = '<a href="' . admin_url('admin.php?page=cnss_social_icon_option') . '">' . __('Settings') . '</a>';
+	return $links;
 }
 
 function cnss_get_immediate_previous_version($current_version)
 {
-    $skip_version = '3.2.8';
+	$slug = 'easy-social-icons';
+	$skip_version = '3.2.8';
 
-    // If currently on the skip version, explicitly return the one before it
-    if ($current_version === $skip_version) {
-        return '3.2.7';
-    }
+	// Cache API response for 12 hours to avoid repeated lookups
+	$cache_key = 'cnss_plugin_versions';
+	$all_versions = get_transient($cache_key);
 
-    $parts = explode('.', $current_version);
-    if (count($parts) !== 3) {
-        return false;
-    }
+	if ($all_versions === false) {
+		$response = wp_remote_get("https://api.wordpress.org/plugins/info/1.2/?action=plugin_information&request[slug]={$slug}");
+		if (is_wp_error($response)) {
+			return false;
+		}
 
-    list($major, $minor, $patch) = $parts;
+		$data = json_decode(wp_remote_retrieve_body($response), true);
+		if (empty($data['versions']) || !is_array($data['versions'])) {
+			return false;
+		}
 
-    if ((int)$patch > 0) {
-        $patch = (int)$patch - 1;
-        $candidate = "{$major}.{$minor}.{$patch}";
+		$all_versions = array_keys($data['versions']);
+		set_transient($cache_key, $all_versions, 12 * HOUR_IN_SECONDS);
+	}
 
-        // If candidate is the version to skip, go one more back
-        if ($candidate === $skip_version) {
-            $patch--;
-            $candidate = "{$major}.{$minor}.{$patch}";
-        }
+	// Remove skip version
+	$all_versions = array_filter($all_versions, function ($v) use ($skip_version) {
+		return $v !== $skip_version;
+	});
 
-        return $candidate;
-    }
+	// Sort versions properly
+	usort($all_versions, 'version_compare');
 
-    return false; // no previous patch
+	// Find the immediate previous version
+	$previous = false;
+	foreach ($all_versions as $version) {
+		if (version_compare($version, $current_version, '<')) {
+			$previous = $version;
+		} else {
+			break;
+		}
+	}
+
+	return $previous;
 }
 
 // (optional) check if ZIP exists before showing link
 function cnss_remote_file_exists($url)
 {
-    $response = wp_remote_head($url);
-    if (!is_wp_error($response) && isset($response['response']['code'])) {
-        return (int)$response['response']['code'] === 200;
-    }
-    return false;
+	$response = wp_remote_head($url);
+	if (!is_wp_error($response) && isset($response['response']['code'])) {
+		return (int)$response['response']['code'] === 200;
+	}
+	return false;
 }
 
 add_action('admin_post_cnss_rollback_plugin', 'cnss_handle_rollback_plugin');
 function cnss_handle_rollback_plugin()
 {
-    if (!current_user_can('install_plugins')) {
-        wp_die('You do not have permission to perform this action.');
-    }
+	if (!current_user_can('install_plugins')) {
+		wp_die('You do not have permission to perform this action.');
+	}
 
-    check_admin_referer('cnss_rollback_plugin');
+	check_admin_referer('cnss_rollback_plugin');
 
-    if (empty($_GET['rollback_version'])) {
-        wp_die('No rollback version specified.');
-    }
+	if (empty($_GET['rollback_version'])) {
+		wp_die('No rollback version specified.');
+	}
 
-    $rollback_version = sanitize_text_field($_GET['rollback_version']);
-    $slug = 'easy-social-icons';
-    $zip_url = "https://downloads.wordpress.org/plugin/{$slug}.{$rollback_version}.zip";
+	$rollback_version = sanitize_text_field($_GET['rollback_version']);
+	$slug = 'easy-social-icons';
+	$zip_url = "https://downloads.wordpress.org/plugin/{$slug}.{$rollback_version}.zip";
 
-    require_once ABSPATH . 'wp-admin/includes/file.php';
-    require_once ABSPATH . 'wp-admin/includes/plugin.php';
-    require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+	require_once ABSPATH . 'wp-admin/includes/file.php';
+	require_once ABSPATH . 'wp-admin/includes/plugin.php';
+	require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
 
-    global $wp_filesystem;
-    if (empty($wp_filesystem)) {
-        WP_Filesystem();
-    }
+	global $wp_filesystem;
+	if (empty($wp_filesystem)) {
+		WP_Filesystem();
+	}
 
-    if (!$wp_filesystem->method || $wp_filesystem->method !== 'direct') {
-        wp_die('WordPress could not access your file system directly. Please check permissions.');
-    }
+	if (!$wp_filesystem->method || $wp_filesystem->method !== 'direct') {
+		wp_die('WordPress could not access your file system directly. Please check permissions.');
+	}
 
-    $tmp_file = download_url($zip_url);
-    if (is_wp_error($tmp_file)) {
-        wp_die('Download failed: ' . $tmp_file->get_error_message());
-    }
+	$tmp_file = download_url($zip_url);
+	if (is_wp_error($tmp_file)) {
+		wp_die('Download failed: ' . $tmp_file->get_error_message());
+	}
 
-    $unzip_result = unzip_file($tmp_file, WP_PLUGIN_DIR);
-    unlink($tmp_file);
+	$unzip_result = unzip_file($tmp_file, WP_PLUGIN_DIR);
+	unlink($tmp_file);
 
-    if (is_wp_error($unzip_result)) {
-        wp_die('Unzip failed: ' . $unzip_result->get_error_message());
-    }
+	if (is_wp_error($unzip_result)) {
+		wp_die('Unzip failed: ' . $unzip_result->get_error_message());
+	}
 
-    activate_plugin(plugin_basename(__FILE__));
+	activate_plugin(plugin_basename(__FILE__));
 
-    // Pass rollback version to the notice
-    wp_safe_redirect(admin_url('plugins.php?cnss_rollback=success&version=' . urlencode($rollback_version)));
-    exit;
+	// Pass rollback version to the notice
+	wp_safe_redirect(admin_url('plugins.php?cnss_rollback=success&version=' . urlencode($rollback_version)));
+	exit;
 }
 
 add_action('admin_notices', function () {
-    if (isset($_GET['cnss_rollback']) && $_GET['cnss_rollback'] === 'success') {
-        $version = isset($_GET['version']) ? esc_html($_GET['version']) : '';
-        echo '<div class="notice notice-success"><p>Easy Social Icons rolled back successfully';
-        if ($version) {
-            echo ' to version ' . $version;
-        }
-        echo '!</p></div>';
-    }
+	if (isset($_GET['cnss_rollback']) && $_GET['cnss_rollback'] === 'success') {
+		$version = isset($_GET['version']) ? esc_html($_GET['version']) : '';
+		echo '<div class="notice notice-success"><p>Easy Social Icons rolled back successfully';
+		if ($version) {
+			echo ' to version ' . $version;
+		}
+		echo '!</p></div>';
+	}
 });
 /**
  * rollback to old version
  */
+
 
 add_action('init', 'cnss_init_script');
 add_action('init', 'cnss_process_post');
@@ -231,6 +245,14 @@ function cnss_admin_sidebar()
 	//shuffle( $banners );
 ?>
 	<div class="cn_admin_banner">
+		<div class="esi-promotion">
+			<a href="https://www.cybernetikz.com/checkout/?add-to-cart=65&quantity=1&coupon_code=autm1000" target="_blank">
+				<img
+					src="<?php echo esc_url(plugins_url('images/esi-promo.png', __FILE__)); ?>"
+					alt="ESI Promotion">
+			</a>
+		</div>
+
 		<div class="pro-ads">
 			<h2>Easy Social Icons Premium Advantage</h2>
 			<ul>
@@ -292,8 +314,8 @@ function cnss_admin_style()
 {
 	global $cnssPluginsURI;
 	wp_register_style('cnss_admin_css', $cnssPluginsURI . 'css/admin-style.css', false, '1.0');
-	wp_register_style('cnss_font_awesome_css', $cnssPluginsURI . 'css/font-awesome/css/all.min.css', false, '6.7.2');
-	wp_register_style('cnss_font_awesome_v4_shims', $cnssPluginsURI . 'css/font-awesome/css/v4-shims.min.css', false, '6.7.2');
+	wp_register_style('cnss_font_awesome_css', $cnssPluginsURI . 'css/font-awesome/css/all.min.css', false, '7.0.0');
+	wp_register_style('cnss_font_awesome_v4_shims', $cnssPluginsURI . 'css/font-awesome/css/v4-shims.min.css', false, '7.0.0');
 	wp_enqueue_style('cnss_admin_css');
 	wp_enqueue_style('cnss_font_awesome_css');
 	wp_enqueue_style('cnss_font_awesome_v4_shims');
@@ -308,10 +330,10 @@ function cnss_init_script()
 	wp_register_script('cnss_js', $cnssPluginsURI . 'js/cnss.js', array(), '1.0');
 	wp_enqueue_script('cnss_js');
 
-	wp_register_style('cnss_font_awesome_css', $cnssPluginsURI . 'css/font-awesome/css/all.min.css', false, '6.7.2');
+	wp_register_style('cnss_font_awesome_css', $cnssPluginsURI . 'css/font-awesome/css/all.min.css', false, '7.0.0');
 	wp_enqueue_style('cnss_font_awesome_css');
 
-	wp_register_style('cnss_font_awesome_v4_shims', $cnssPluginsURI . 'css/font-awesome/css/v4-shims.min.css', false, '6.7.2');
+	wp_register_style('cnss_font_awesome_v4_shims', $cnssPluginsURI . 'css/font-awesome/css/v4-shims.min.css', false, '7.0.0');
 	wp_enqueue_style('cnss_font_awesome_v4_shims');
 
 	wp_register_style('cnss_css', $cnssPluginsURI . 'css/cnss.css', array(), '1.0');
@@ -1226,75 +1248,29 @@ function cnss_save_ajax_order()
 	}
 }
 
-function cnss_get_icon_html($url = '', $title = '', $width = '', $height = '', $margin = '') {
+function cnss_get_icon_html($url = '', $title = '', $width = '', $height = '', $margin = '')
+{
 	if ($url == '') {
 		return '<span>Input source invalid.</span>';
 	}
 
 	$title 	= esc_attr($title);
-	$width  = ($width=='')	?	esc_attr(get_option('cnss-width'))	:	$width;
-	$height = ($height=='')	?	esc_attr(get_option('cnss-height'))	:	$height;
+	$width  = ($width == '')	?	esc_attr(get_option('cnss-width'))	:	$width;
+	$height = ($height == '')	?	esc_attr(get_option('cnss-height'))	:	$height;
 	$icon_output_html = '';
 
-	if ( cnss_is_image_icon($url) ) {
+	if (cnss_is_image_icon($url)) {
 		$url 	= esc_url($url);
 		$imgStyle = '';
-		$imgStyle .= ($margin == '') ? '' : 'margin:'.$margin.'px;';
-		$imgStyle .= ($width == $height) ? '' : 'height:'.$height.'px;';
-		$icon_output_html = '<img src="'.cnss_get_img_url($url).'" border="0" width="'.$width.'" height="'.$height.'" alt="'.$title.'" title="'.$title.'" style="'.$imgStyle.'" />';
+		$imgStyle .= ($margin == '') ? '' : 'margin:' . $margin . 'px;';
+		$imgStyle .= ($width == $height) ? '' : 'height:' . $height . 'px;';
+		$icon_output_html = '<img src="' . cnss_get_img_url($url) . '" border="0" width="' . $width . '" height="' . $height . '" alt="' . $title . '" title="' . $title . '" style="' . $imgStyle . '" />';
 	} else {
 		$url 	= esc_attr($url);
-		$icon_output_html = '<i title="'.$title.'" style="font-size:'.$width.'px;" class="'.$url.'"></i>';
+		$icon_output_html = '<i title="' . $title . '" style="font-size:' . $width . 'px;" class="' . $url . '"></i>';
 	}
 	return $icon_output_html;
 }
-// function cnss_get_icon_html($url = '', $title = '', $width = '', $height = '', $margin = '')
-// {
-// 	if ($url == '') {
-// 		return '<span>Input source invalid.</span>';
-// 	}
-
-// 	$title  = esc_attr($title);
-// 	$width  = ($width == '')    ?   esc_attr(get_option('cnss-width'))   :   $width;
-// 	$height = ($height == '')   ?   esc_attr(get_option('cnss-height'))  :   $height;
-// 	$icon_output_html = '';
-
-// 	$aPadding = round($width / 4);
-// 	$aWidth = $width + $aPadding * 2;
-// 	$aHeight = $aWidth;
-
-// 	if (cnss_is_image_icon($url)) {
-// 		// If the URL is an image, render an image tag
-// 		$url    = esc_url($url);
-// 		$imgStyle = '';
-// 		$imgStyle .= ($margin == '') ? '' : 'margin:0px;';
-// 		$imgStyle .= ($aWidth == $aHeight) ? '' : 'height:' . $aHeight . 'px;';
-// 		$icon_shape = cnss_get_option('cnss-icon-shape');
-// 		if ($icon_shape == 'circle') {
-// 			$borderRadius = '50%';
-// 			$imgStyle .= "border-radius: {$borderRadius};";
-// 		} elseif ($icon_shape == 'round-corner') {
-// 			$borderRadius = '10%';
-// 			$imgStyle .= "border-radius: {$borderRadius};";
-// 		} else {
-// 			$borderRadius = '0%';
-// 			$imgStyle .= "border-radius: {$borderRadius};";
-// 		}
-
-// 		if (isset($_GET['page']) != 'cnss_social_icon_page') {
-// 			$imgStyle = $imgStyle;
-// 		} else {
-// 			$imgStyle = '';
-// 		}
-// 		$icon_output_html = '<img src="' . cnss_get_img_url($url) . '" border="0" width="' . $aWidth . '" height="' . $aHeight . '" alt="' . $title . '" title="' . $title . '" style="' . $imgStyle . '" />';
-// 	} else {
-// 		// If the URL is not an image, render an icon
-// 		$icon_class = esc_attr($url);
-// 		$icon_output_html = '<i title="' . $title . '" style="font-size:' . $width . 'px;" class="' . $icon_class . ' "></i>';
-// 	}
-
-// 	return $icon_output_html;
-// }
 
 
 function cnss_get_img_url($url)
@@ -1312,7 +1288,7 @@ function cnss_get_img_url($url)
 }
 function cnss_is_image_icon($url)
 {
-	return !preg_match('/(fa[srb]?|fa-brands)\s+fa-[a-z0-9-]+/', $url);
+	return !preg_match('/(fa[srb]?|fa-brands|fa-solid|fa-regular)\s+fa-[a-z0-9-]+/', $url);
 }
 
 
@@ -1357,9 +1333,10 @@ function cnss_social_icon_add_fn()
 		"https://mixcloud.com/" => "Mixcloud",
 		"https://medium.com/" => "Medium",
 		"https://paper-plane.com/" => "Newsletter",
+		"https://paper-plane.com/" => "NewsPaper",
 		"https://pinterest.com/" => "Pinterest",
 		"https://reddit.com/" => "Reddit",
-		"rss" => "RSS",
+		"https://yourdomain.com/feed" => "RSS",
 		"skype" => "Skype",
 		"https://snapchat.com/" => "Snapchat",
 		"https://soundcloud.com/" => "Soundcloud",
@@ -1372,7 +1349,6 @@ function cnss_social_icon_add_fn()
 		"https://www.swift.org/" => "swift",
 		"https://telegram.org/" => "Telegram",
 		"https://www.tiktok.com/" => "Tiktok",
-		"https://tripadvisor.com/" => "Trip Advisor",
 		"https://tumblr.com/" => "Tumblr",
 		"https://twitch.com/" => "Twitch",
 		"https://www.threads.net/" => "Threads",
@@ -1488,7 +1464,7 @@ function cnss_social_icon_add_fn()
 																																														?>" height="<?php //echo $cnss_height;
 																																																	?>" alt="<?php echo $title; ?>" />
 
-								<a title="Choose Font Awesome Icon (Version 6.7.2)" href="#TB_inline?width=600&height=500&inlineId=cnss-font-awesome-icons-list" class="thickbox button">Choose From FontAwesome Icon </a>
+								<a title="Choose Font Awesome Icon (Version 7.0.0)" href="#TB_inline?width=600&height=500&inlineId=cnss-font-awesome-icons-list" class="thickbox button">Choose From FontAwesome Icon </a>
 								<span style="vertical-align:middle;">or</span>
 								<input style="vertical-align:top" id="logo_image_button" class="button" type="button" value="Upload Your Own Image Icon" />
 
@@ -1822,18 +1798,17 @@ function cn_social_icon($attr = array(), $call_from_widget = NULL)
 
 	//echo '<ul id="'.esc_attr($attr_id).'" class="cnss-social-icon '.esc_attr($attr_class).'" style="text-align:'.esc_attr($text_align).';">';
 	echo '<ul id="' . esc_attr($attr_id) . '" class="cnss-social-icon ' . esc_attr($attr_class) . '" style="text-align:' . esc_attr($text_align) . '; text-align:-webkit-' . esc_attr($text_align) . '; align-self:' . esc_attr($flex_css) . '; margin: 0 auto;">';
-	$i=0;
-	foreach($icons as $icon)
-	{
+	$i = 0;
+	foreach ($icons as $icon) {
 		$aStyle = '';
-		$liClass = 'cn-fa-'.cnss_format_title($icon->title);
+		$liClass = 'cn-fa-' . cnss_format_title($icon->title);
 		$aClass = '';
 		$liStyle = ($vorh == 'horizontal') ? 'display:inline-block;' : '';
-		$aTarget = ($icon->target ==1 ) ? 'target="_blank"' : '';
-		if ( !cnss_is_image_icon($icon->image_url) ) {
+		$aTarget = ($icon->target == 1) ? 'target="_blank"' : '';
+		if (!cnss_is_image_icon($icon->image_url)) {
 			$liClass .= " cn-fa-icon ";
-			$aPadding = round($cnss_width/4);
-			$aWidth = $cnss_width + $aPadding*2;
+			$aPadding = round($cnss_width / 4);
+			$aWidth = $cnss_width + $aPadding * 2;
 			$aHeight = $aWidth;
 			$aStyle .= "width:{$aWidth}px;";
 			$aStyle .= "height:{$aHeight}px;";
@@ -1855,11 +1830,11 @@ function cn_social_icon($attr = array(), $call_from_widget = NULL)
 			$aStyle .= "border-radius: {$borderRadius};";
 		}
 	?>
-	<li class="<?php echo $liClass; ?>" style="<?php echo $liStyle; ?>"><a class="<?php echo $aClass; ?>" <?php echo $aTarget ?> href="<?php echo $icon->url ?>" title="<?php echo $icon->title ?>" style="<?php echo $aStyle ?>"><?php echo cnss_get_icon_html($icon->image_url, $icon->title, $cnss_width, $cnss_height, $li_margin); ?></a></li><?php
-	$i++;
-	}
-	echo '</ul>';
-	?>
+		<li class="<?php echo $liClass; ?>" style="<?php echo $liStyle; ?>"><a class="<?php echo $aClass; ?>" <?php echo $aTarget ?> href="<?php echo $icon->url ?>" title="<?php echo $icon->title ?>" style="<?php echo $aStyle ?>"><?php echo cnss_get_icon_html($icon->image_url, $icon->title, $cnss_width, $cnss_height, $li_margin); ?></a></li><?php
+																																																																																						$i++;
+																																																																																					}
+																																																																																					echo '</ul>';
+																																																																																						?>
 
 	<?php /*
 	echo '<ul id="' . esc_attr($attr_id) . '" class="cnss-social-icon ' . esc_attr($attr_class) . '" style="text-align:' . esc_attr($text_align) . '; text-align:-webkit-' . esc_attr($text_align) . '; align-self:' . esc_attr($flex_css) . '; margin: 0 auto;">';
@@ -1934,30 +1909,30 @@ function cn_social_icon($attr = array(), $call_from_widget = NULL)
 
 		*/ ?>
 
-		<?php
+	<?php
 
-			$out = ob_get_contents();
-			ob_end_clean();
-			return $out;
-		}
+	$out = ob_get_contents();
+	ob_end_clean();
+	return $out;
+}
 
-		function cnss_social_icon_sc($selected_icons_array = array())
-		{
-			global $wpdb, $cnssBaseURL;
+function cnss_social_icon_sc($selected_icons_array = array())
+{
+	global $wpdb, $cnssBaseURL;
 
-			$cnss_width = esc_attr(get_option('cnss-width'));
-			$cnss_height = esc_attr(get_option('cnss-height'));
-			$image_file_path = $cnssBaseURL;
+	$cnss_width = esc_attr(get_option('cnss-width'));
+	$cnss_height = esc_attr(get_option('cnss-height'));
+	$image_file_path = $cnssBaseURL;
 
-			$icons = cnss_get_all_icons();
-			$icon_count = count($icons);
+	$icons = cnss_get_all_icons();
+	$icon_count = count($icons);
 
-			ob_start();
-			echo '<ul class="cnss-social-icon-admin" style="text-align:left;">' . "\r\n";
-			$i = 0;
-			foreach ($icons as $icon) {
-				$icon->id = esc_attr($icon->id);
-				?><li style="display:inline-block; padding:2px 8px; border:1px dotted #ccc;">
+	ob_start();
+	echo '<ul class="cnss-social-icon-admin" style="text-align:left;">' . "\r\n";
+	$i = 0;
+	foreach ($icons as $icon) {
+		$icon->id = esc_attr($icon->id);
+	?><li style="display:inline-block; padding:2px 8px; border:1px dotted #ccc;">
 			<div style="text-align: center; width: 50px;">
 				<?php
 				$icon_class = esc_attr($icon->image_url); // Replace this if it's not the correct source
@@ -1974,70 +1949,70 @@ function cn_social_icon($attr = array(), $call_from_widget = NULL)
 			<div style="text-align: center;"><input <?php if (in_array($icon->id, $selected_icons_array)) echo 'checked="checked"'; ?> style="margin:0;" type="checkbox" name="_selected_icons[]" id="icon<?php echo $icon->id; ?>" value="<?php echo $icon->id; ?>" /></div>
 		</li>
 	<?php
-				$i++;
-			}
-			echo '</ul>' . "\r\n";
-			$out = ob_get_contents();
-			ob_end_clean();
-			return $out;
+		$i++;
+	}
+	echo '</ul>' . "\r\n";
+	$out = ob_get_contents();
+	ob_end_clean();
+	return $out;
+}
+
+class Cnss_Widget extends WP_Widget
+{
+
+	public function __construct()
+	{
+		parent::__construct(
+			'cnss_widget', // Base ID
+			'Easy Social Icons', // Name
+			array('description' => __('Add social media icons to your Sidebar.')) // Args
+		);
+	}
+
+	public function widget($args, $instance)
+	{
+		extract($args);
+		$title = apply_filters('widget_title', $instance['title']);
+
+		echo $before_widget;
+		if (!empty($title))
+			echo $before_title . $title . $after_title;
+		echo cn_social_icon($instance, 1);
+		echo $after_widget;
+	}
+
+	public function update($new_instance, $old_instance)
+	{
+
+		$instance = array();
+		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['attr_id'] = strip_tags($new_instance['attr_id']);
+		$instance['attr_class'] = strip_tags($new_instance['attr_class']);
+		$instance['width'] = strip_tags($new_instance['width']);
+		$instance['height'] = strip_tags($new_instance['height']);
+		$instance['margin'] = strip_tags($new_instance['margin']);
+		$instance['display'] = strip_tags($new_instance['display']);
+		$instance['alignment'] = strip_tags($new_instance['alignment']);
+		$instance['selected_icons'] = $new_instance['selected_icons'];
+		return $instance;
+	}
+
+	public function form($instance)
+	{
+
+		$cnss_width = esc_attr(get_option('cnss-width'));
+		$cnss_height = esc_attr(get_option('cnss-height'));
+		$cnss_margin = esc_attr(get_option('cnss-margin'));
+		$cnss_rows = esc_attr(get_option('cnss-row-count'));
+		$vorh = esc_attr(get_option('cnss-vertical-horizontal'));
+		$text_align = esc_attr(get_option('cnss-text-align'));
+		if (isset($instance['title'])) {
+			$title = $instance['title'];
+		} else {
+			$title = __('Follow Us');
 		}
-
-		class Cnss_Widget extends WP_Widget
-		{
-
-			public function __construct()
-			{
-				parent::__construct(
-					'cnss_widget', // Base ID
-					'Easy Social Icons', // Name
-					array('description' => __('Add social media icons to your Sidebar.')) // Args
-				);
-			}
-
-			public function widget($args, $instance)
-			{
-				extract($args);
-				$title = apply_filters('widget_title', $instance['title']);
-
-				echo $before_widget;
-				if (!empty($title))
-					echo $before_title . $title . $after_title;
-				echo cn_social_icon($instance, 1);
-				echo $after_widget;
-			}
-
-			public function update($new_instance, $old_instance)
-			{
-
-				$instance = array();
-				$instance['title'] = strip_tags($new_instance['title']);
-				$instance['attr_id'] = strip_tags($new_instance['attr_id']);
-				$instance['attr_class'] = strip_tags($new_instance['attr_class']);
-				$instance['width'] = strip_tags($new_instance['width']);
-				$instance['height'] = strip_tags($new_instance['height']);
-				$instance['margin'] = strip_tags($new_instance['margin']);
-				$instance['display'] = strip_tags($new_instance['display']);
-				$instance['alignment'] = strip_tags($new_instance['alignment']);
-				$instance['selected_icons'] = $new_instance['selected_icons'];
-				return $instance;
-			}
-
-			public function form($instance)
-			{
-
-				$cnss_width = esc_attr(get_option('cnss-width'));
-				$cnss_height = esc_attr(get_option('cnss-height'));
-				$cnss_margin = esc_attr(get_option('cnss-margin'));
-				$cnss_rows = esc_attr(get_option('cnss-row-count'));
-				$vorh = esc_attr(get_option('cnss-vertical-horizontal'));
-				$text_align = esc_attr(get_option('cnss-text-align'));
-				if (isset($instance['title'])) {
-					$title = $instance['title'];
-				} else {
-					$title = __('Follow Us');
-				}
-				$instance['alignment'] = isset($instance['alignment']) ? $instance['alignment'] : $text_align;
-				$instance['display'] = isset($instance['display']) ? $instance['display'] : $vorh;
+		$instance['alignment'] = isset($instance['alignment']) ? $instance['alignment'] : $text_align;
+		$instance['display'] = isset($instance['display']) ? $instance['display'] : $vorh;
 	?>
 		<p>
 			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
@@ -2093,26 +2068,26 @@ function cn_social_icon($attr = array(), $call_from_widget = NULL)
 			</tr>
 		</table>
 		<?php
-			}
+	}
 
-			public function cnss_social_icon_widget($selected_icons_array = array())
-			{
+	public function cnss_social_icon_widget($selected_icons_array = array())
+	{
 
-				global $wpdb, $cnssBaseURL;
+		global $wpdb, $cnssBaseURL;
 
-				$cnss_width = esc_attr(get_option('cnss-width'));
-				$cnss_height = esc_attr(get_option('cnss-height'));
-				$image_file_path = $cnssBaseURL;
+		$cnss_width = esc_attr(get_option('cnss-width'));
+		$cnss_height = esc_attr(get_option('cnss-height'));
+		$image_file_path = $cnssBaseURL;
 
-				$icons = cnss_get_all_icons();
-				$icon_count = count($icons);
+		$icons = cnss_get_all_icons();
+		$icon_count = count($icons);
 
-				ob_start();
-				if ($icons) {
-					echo '<ul class="cnss-social-icon-admin-widget" style="text-align:left;">' . "\r\n";
-					$i = 0;
-					foreach ($icons as $icon) {
-						$icon->id = esc_attr($icon->id); ?>
+		ob_start();
+		if ($icons) {
+			echo '<ul class="cnss-social-icon-admin-widget" style="text-align:left;">' . "\r\n";
+			$i = 0;
+			foreach ($icons as $icon) {
+				$icon->id = esc_attr($icon->id); ?>
 				<li style="display:inline-block; padding:2px 8px; border:1px dashed #ccc;">
 					<div style="text-align: center; width: <?php echo $cnss_width ?>px;">
 						<label for="<?php echo $this->get_field_id('selected_icons' . esc_attr($icon->id)); ?>"><?php echo cnss_get_icon_html($icon->image_url, $icon->title); ?>
@@ -2121,25 +2096,25 @@ function cn_social_icon($attr = array(), $call_from_widget = NULL)
 					<div style="text-align: center;"><input <?php if (in_array($icon->id, $selected_icons_array)) echo 'checked="checked"'; ?> style="margin:0;" type="checkbox" name="<?php echo $this->get_field_name('selected_icons'); ?>[]" id="<?php echo $this->get_field_id('selected_icons' . $icon->id); ?>" value="<?php echo $icon->id; ?>" /></div>
 				</li>
 <?php
-						$i++;
-					}
-					echo '</ul>' . "\r\n";
-				} else {
-					echo 'No icon found, please <a href="admin.php?page=cnss_social_icon_add" class="page-title-action">Add New</a> icon.';
-				}
-				$out = ob_get_contents();
-				ob_end_clean();
-				return $out;
+				$i++;
 			}
-		} // class Cnss_Widget
-
-		if (version_compare(PHP_VERSION, '5.6.0') >= 0) {
-			add_action('widgets_init', function () {
-				register_widget("Cnss_Widget");
-			});
+			echo '</ul>' . "\r\n";
 		} else {
-			add_action('widgets_init', function () {
-				register_widget('Cnss_Widget');
-			});
+			echo 'No icon found, please <a href="admin.php?page=cnss_social_icon_add" class="page-title-action">Add New</a> icon.';
 		}
-		include_once('social-share.php');
+		$out = ob_get_contents();
+		ob_end_clean();
+		return $out;
+	}
+} // class Cnss_Widget
+
+if (version_compare(PHP_VERSION, '5.6.0') >= 0) {
+	add_action('widgets_init', function () {
+		register_widget("Cnss_Widget");
+	});
+} else {
+	add_action('widgets_init', function () {
+		register_widget('Cnss_Widget');
+	});
+}
+include_once('social-share.php');
