@@ -10,12 +10,15 @@
     width: 100%;
     clear: both;
 }
+.tab_align_top {
+    vertical-align: top; 
+}
 .cnss_common_display{
     width: 36px;
     height: 36px;
     padding: 0px;
     margin: 2px;
-    color: #ffffff;   
+    color: #fff;   
     text-align: center;
     border: none;
     line-height: 36px;

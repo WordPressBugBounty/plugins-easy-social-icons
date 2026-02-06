@@ -3,7 +3,7 @@
 Plugin Name: Easy Social Icons
 Plugin URI: http://www.cybernetikz.com
 Description: You can upload your own social icon, set your social URL, choose weather you want to display vertical or horizontal. You can use the shortcode <strong>[cn-social-icon]</strong> in page/post, template tag for php file <strong>&lt;?php if ( function_exists('cn_social_icon') ) echo cn_social_icon(); ?&gt;</strong> also you can use the widget <strong>"Easy Social Icons"</strong> for sidebar.
-Version: 4.0.0
+Version: 4.0.2
 Author: CyberNetikz
 Author URI: http://www.cybernetikz.com
 License: GPL2
@@ -245,14 +245,6 @@ function cnss_admin_sidebar()
 	//shuffle( $banners );
 ?>
 	<div class="cn_admin_banner">
-		<div class="esi-promotion">
-			<a href="https://www.cybernetikz.com/checkout/?add-to-cart=65&quantity=1&coupon_code=autm1000" target="_blank">
-				<img
-					src="<?php echo esc_url(plugins_url('images/esi-promo.png', __FILE__)); ?>"
-					alt="ESI Promotion">
-			</a>
-		</div>
-
 		<div class="pro-ads">
 			<h2>Easy Social Icons Premium Advantage</h2>
 			<ul>
@@ -554,20 +546,20 @@ function cnss_social_icon_option_fn()
 				<form method="post" action="options.php" enctype="multipart/form-data">
 					<?php settings_fields('cnss-settings-group'); ?>
 					<table class="form-table">
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<th scope="row">Icon Width</th>
 							<td><input type="number" name="cnss-width" id="cnss-width" class="small-text" value="<?php echo esc_attr($cnss_width) ?>" />px</td>
 						</tr>
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<th scope="row">Icon Height</th>
 							<td><input type="number" name="cnss-height" id="cnss-height" class="small-text" value="<?php echo esc_attr($cnss_height) ?>" />px</td>
 						</tr>
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<th scope="row">Icon Margin</th>
 							<td><input type="number" name="cnss-margin" id="cnss-margin" class="small-text" value="<?php echo esc_attr($cnss_margin) ?>" />px <em><small>(Gap between each icon)</small></em></td>
 						</tr>
 
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<th scope="row">Icon Display</th>
 							<td>
 								<input <?php echo $horizontal ?> type="radio" name="cnss-vertical-horizontal" id="horizontal" value="horizontal" />&nbsp;<label for="horizontal">Horizontally</label><br />
@@ -576,7 +568,7 @@ function cnss_social_icon_option_fn()
 							</td>
 						</tr>
 
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<th scope="row">Icon Alignment</th>
 							<td>
 								<input <?php echo $center ?> type="radio" name="cnss-text-align" id="center" value="center" />&nbsp;<label for="center">Center</label><br />
@@ -584,29 +576,29 @@ function cnss_social_icon_option_fn()
 								<input <?php echo $right ?> type="radio" name="cnss-text-align" id="right" value="right" />&nbsp;<label for="right">Right</label>
 							</td>
 						</tr>
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<th scope="row">Use Original Color</th>
 							<td><input type="checkbox" id="cnss_use_original_color" name="cnss-original-icon-color" value="1" <?php echo $cnss_original_icon_color == 1 ? 'checked="checked"' : ''; ?>> <em>This will show original icon color for social icons, like <span style="background:#3b5998; color: #fff;">facebook</span> color is blue, <span style="background:#e62f27; color: #fff;">youtube</span> color is red.</em></td>
 						</tr>
 
-						<tr class="wrap-icon-bg-color" valign="top" style="<?php echo $cnss_original_icon_color == 1 ? 'display: none;' : ''; ?>">
+						<tr class="wrap-icon-bg-color tab_align_top" style="<?php echo $cnss_original_icon_color == 1 ? 'display: none;' : ''; ?>">
 							<th scope="row">Icon Background Color</th>
 							<td><input type="text" name="cnss-icon-bg-color" id="cnss-icon-bg-color" class="cnss-fa-icon-color" value="<?php echo esc_attr($icon_bg_color) ?>" /></td>
 						</tr>
-						<tr class="wrap-icon-bg-color" valign="top" style="<?php echo $cnss_original_icon_color == 1 ? 'display: none;' : ''; ?>">
+						<tr class="wrap-icon-bg-color tab_align_top" style="<?php echo $cnss_original_icon_color == 1 ? 'display: none;' : ''; ?>">
 							<th scope="row">Icon Background Hover Color</th>
 							<td><input type="text" name="cnss-icon-bg-hover-color" id="cnss-icon-bg-hover-color" class="cnss-fa-icon-color" value="<?php echo esc_attr($icon_bg_hover_color) ?>" /></td>
 						</tr>
 
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<th scope="row">Icon Color</th>
 							<td><input type="text" name="cnss-icon-color" id="cnss-icon-color" class="cnss-fa-icon-color" value="<?php echo esc_attr($icon_color) ?>" /></td>
 						</tr>
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<th scope="row">Icon Hover Color</th>
 							<td><input type="text" name="cnss-icon-hover-color" id="cnss-icon-hover-color" class="cnss-fa-icon-color" value="<?php echo esc_attr($icon_hover_color) ?>" /></td>
 						</tr>
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<th scope="row">Icon Shape</th>
 							<td><select name="cnss-icon-shape" id="cnss-icon-shape">
 									<option <?php selected($icon_shape, 'square'); ?> value="square">Square</option>
@@ -616,7 +608,7 @@ function cnss_social_icon_option_fn()
 							</td>
 						</tr>
 
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<th scope="row" style="color:#999;">Icon Shape Premium</th>
 							<td><select style="color:#999;">
 									<option value="">Please select</option>
@@ -632,7 +624,7 @@ function cnss_social_icon_option_fn()
 							</td>
 						</tr>
 
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<th scope="row" style="color:#999;">Icon Animation Hover Premium</th>
 							<td>
 								<select name="cnss-icon-animation-hover" style="color:#999;">
@@ -654,7 +646,7 @@ function cnss_social_icon_option_fn()
 						</tr>
 
 
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<th scope="row" style="color:#999;">Icon Name Showing</th>
 							<td>
 								<input <?php echo $icon_name_show; ?> type="radio" disabled name="cnss-icon-name-show" value="yes" />&nbsp;<label for="yes">Yes</label><br />
@@ -669,12 +661,12 @@ function cnss_social_icon_option_fn()
 							</td>
 						</tr>
 						<?php if ($icon_name == 'yes') { ?>
-							<tr valign="top">
+							<tr class="tab_align_top">
 								<th scope="row">Icon Name Font Size</th>
 								<td><input type="number" name="cnss-icon-name-font-size" id="cnss-icon-name-font-size" class="small-text" value="<?php echo esc_attr(($icon_name_font_size)) ?>" />px</td>
 							</tr>
 
-							<tr valign="top">
+							<tr class="tab_align_top">
 								<th scope="row">Icon Name Font Color</th>
 								<td><input type="text" name="cnss-icon-name-font-color" id="cnss-icon-name-font-color" class="cnss-icon-name-font-color" value="<?php echo esc_attr($icon_name_font_color) ?>" /></td>
 							</tr>
@@ -1092,7 +1084,7 @@ function cnss_process_post()
 			}
 		} // end if update
 
-		if ($_POST['action'] == 'edit' and $_POST['id'] != '') {
+		if ($_POST['action'] == 'edit' && $_POST['id'] != '') {
 			$err = "";
 			$msg = "";
 
@@ -1444,7 +1436,7 @@ function cnss_social_icon_add_fn()
 				<form method="post" enctype="multipart/form-data" action="">
 					<?php wp_nonce_field('cn_insert_icon'); ?>
 					<table class="form-table">
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<th scope="row">Title<em>*</em></th>
 							<td>
 								<input list="title-autofill" type="text" name="title" id="title" class="regular-text" value="<?php echo $title; ?>" /><br /><i>Type few char for suggestions</i>
@@ -1455,7 +1447,7 @@ function cnss_social_icon_add_fn()
 							</td>
 						</tr>
 
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<th scope="row"><?php echo esc_attr($uptxt); ?><em>*</em></th>
 							<td>
 								<i id="fa-placeholder" class="<?php echo esc_attr($image_url); ?>" aria-hidden="true" style="font-size: 2em;"></i>
@@ -1472,7 +1464,7 @@ function cnss_social_icon_add_fn()
 							</td>
 						</tr>
 
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<th scope="row">URL<em>*</em></th>
 							<td><input list="url-autofill" type="text" name="url" id="url" class="regular-text" value="<?php echo $url; ?>" />
 								<datalist style="display: none;" id="url-autofill">
@@ -1483,14 +1475,14 @@ function cnss_social_icon_add_fn()
 							</td>
 						</tr>
 
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<th scope="row">Sort Order</th>
 							<td>
 								<input type="number" name="sortorder" id="sortorder" class="small-text" value="<?php echo esc_attr($sortorder); ?>">
 							</td>
 						</tr>
 
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<th scope="row">Target</th>
 							<td>
 								<input type="radio" name="target" id="new" checked="checked" value="1" />&nbsp;<label for="new">Open new window</label>&nbsp;<br />
@@ -1584,7 +1576,7 @@ function cnss_social_icon_page_fn()
 			<div class="left">
 				<table class="widefat page fixed" cellspacing="0">
 					<thead>
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<?php echo cnss_manage_icon_table_header(); ?>
 						</tr>
 					</thead>
@@ -1599,7 +1591,7 @@ function cnss_social_icon_page_fn()
 								$icon->sortorder = esc_attr($icon->sortorder);
 								$icon_class = esc_attr($icon->image_url);
 						?>
-								<tr valign="top">
+								<tr class="tab_align_top">
 									<td>
 										<?php echo esc_attr($icon->id); ?>
 									</td>
@@ -1632,13 +1624,13 @@ function cnss_social_icon_page_fn()
 						<?php
 							} //endforeach
 						} else {
-							echo '<tr valign="top"><td align="center" colspan="8">No icon found, please <a href="admin.php?page=cnss_social_icon_add">Add New</a> icon</td></tr>';
+							echo '<tr class="tab_align_top"><td align="center" colspan="8">No icon found, please <a href="admin.php?page=cnss_social_icon_add">Add New</a> icon</td></tr>';
 						}
 						?>
 					</tbody>
 
 					<tfoot>
-						<tr valign="top">
+						<tr class="tab_align_top">
 							<?php echo cnss_manage_icon_table_header(); ?>
 						</tr>
 					</tfoot>

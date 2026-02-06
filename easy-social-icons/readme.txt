@@ -3,8 +3,8 @@ Contributors: cybernetikz
 Donate link:
 Tags: easy social icons, easy social icon, social icons, social share, follow us, custom social icons, social media icons
 Requires at least: 3.5
-Tested up to: 6.8.1
-Stable tag: 4.0.0
+Tested up to: 6.8.3
+Stable tag: 4.0.2
 
 Upload your own social media icons or choose from font-awesome. Use widget|shortcode to place icons anywhere(sidebar, header, footer, page) in theme.
 
@@ -52,9 +52,6 @@ If you are using <strong>wordpress version lower than 3.5</strong> please use "E
 = PREMIUM FEATURES =
 
 Unlock even more power and customization with the Premium version of Easy Social Icons!
-
-### <strong><a target="_blank" href="https://www.cybernetikz.com/checkout/?add-to-cart=65&quantity=1&coupon_code=autm1000">GET 1000 People FREE License for 1 Year!</a></strong>
-### This offer will expire on October 15, 2025.
 
 #### Advanced Customization Options
 
@@ -130,25 +127,31 @@ If you are using wordpress version lower than 3.5 please use Easy social Icon ve
 
 == Screenshots ==
 
-1. Easy Social Icon Autumn Sales discount!
-2. Display social icons in the sidebar using a widget
-3. Use a different icon shape for sidebar widgets
-4. Customize icon colors in sidebar widgets
-5. Insert social icons using a shortcode in the Gutenberg Editor
-6. Manage the layout of the icons page
-7. Add a new icon for the page layout
-8. Sort icons using drag-and-drop functionality
-9. Configure plugin settings through a dedicated layout page
-10. Display Easy Social Icons on individual post pages
+1. Display social icons in the sidebar using a widget
+2. Use a different icon shape for sidebar widgets
+3. Customize icon colors in sidebar widgets
+4. Insert social icons using a shortcode in the Gutenberg Editor
+5. Manage the layout of the icons page
+6. Add a new icon for the page layout
+7. Sort icons using drag-and-drop functionality
+8. Configure plugin settings through a dedicated layout page
+9. Display Easy Social Icons on individual post pages
 
 == Changelog ==
+= 4.0.2 =
+* Bug fix, Security updates
 
-= 4.0 =
+= 4.0.1 =
+* Now it's compatible with WordPress version 6.8.3
+* Added some new icon
+* Bug fix, Security updates
+
+= 4.0.0 =
 * Added RSS icon
 * Added some new icon
 * Bug fix, Security updates
 * Added Font Awesome 7
-* We’ve removed the TripAdvisor icon because the TripAdvisor team requested its removal from Font Awesome.
+* We've removed the TripAdvisor icon because the TripAdvisor team requested its removal from Font Awesome.
 
 = 3.2.9 =
 * Fixed transparent color for icon image

@@ -19,36 +19,36 @@ function cnss_social_share_option_fn()
                 <form method="post" enctype="multipart/form-data" action="">
                     <?php wp_nonce_field('cn_active_icon'); ?>
                     <table class="show-icon-table">
-                        <tr valign="top">
+                        <tr class="tab_align_top">
                             <td><input type="checkbox" disabled name="facebook" class="facebook" value="yes"> <i title="Facebook" style="font-size:18px; vertical-align:middle" class="fa fa-facebook cnss_common_display cnss_facebook_awesome"></i> <span class="cnss_facebook_text">Facebook</span>
                             </td>
                         </tr>
-                        <tr valign="top">
+                        <tr class="tab_align_top">
                             <td><input type="checkbox" disabled name="twitter" class="cnss_x_display" value="yes"> <i title="X.com" style="font-size:18px; vertical-align:middle" class="fa-brands fa-x-twitter cnss_common_display cnss_twitter_awesome"></i> <span class="cnss_twitter_text">Twitter </span>
                             </td>
                         </tr>
-                        <tr valign="top">
+                        <tr class="tab_align_top">
                             <td><input type="checkbox" disabled name="linkedin" class="cnss_ld_display" value="yes"> <i title="LinkedIn" style="font-size:18px; vertical-align:middle" class="fa fa-linkedin cnss_common_display cnss_linkedin_awesome"></i> <span class="cnss_linkedin_text">LinkedIn</span>
                             </td>
                         </tr>
-                        <tr valign="top">
+                        <tr class="tab_align_top">
                             <td><input type="checkbox" disabled name="whatsapp" class="cnss_wa_display" value="yes"> <i title="Whatsapp" style="font-size:18px; vertical-align:middle" class="fab fa-whatsapp cnss_common_display cnss_whatsapp_awesome"></i> <span class="cnss_whatsapp_text">Whatsapp</span>
                             </td>
                         </tr>
-                        <tr valign="top">
+                        <tr class="tab_align_top">
                             <td><input type="checkbox" disabled name="telegram" class="cnss_tg_display" value="yes"> <i title="Telegram" style="font-size:18px; vertical-align:middle" class="fa fa-telegram cnss_common_display cnss_telegram_awesome"></i> <span class="cnss_telegram_text">Telegram</span>
                             </td>
                         </tr>
-                        <tr valign="top">
+                        <tr class="tab_align_top">
                             <td><input type="checkbox" disabled name="reddit" class="cnss_tg_display" value="yes"> <i title="Reddit" style="font-size:18px; vertical-align:middle" class="fa fa-reddit cnss_common_display cnss_reddit_awesome"></i> <span class="cnss_reddit_text">Reddit</span>
                             </td>
                         </tr>
-                        <tr valign="top">
+                        <tr class="tab_align_top">
                             <td><input type="checkbox" disabled name="copy_link" class="cnss_copy_link_display" value="yes"> <i title="Copy Link" style="font-size:18px; vertical-align:middle" class="fas fa-link cnss_common_display cnss_copy_link_awesome"></i> <span class="cnss_copy_link_text">Copy Link</span>
                             </td>
                         </tr>
 
-                        <tr valign="top">
+                        <tr class="tab_align_top">
                             <td><input type="checkbox" disabled name="email" class="cnss_email_display" value="yes"> <i title="Mailto" style="font-size:18px; vertical-align:middle" class="fa fa-envelope cnss_common_display cnss_envelope_awesome"></i> <span class="cnss_envelope_text">Email</span>
                             </td>
                         </tr>
@@ -56,7 +56,7 @@ function cnss_social_share_option_fn()
 
                     <h3 style="color:#999">2. Where shall they be displayed?</h3>
                     <table class="form-table2">
-                        <tr valign="top">
+                        <tr class="tab_align_top">
                             <td><input type="checkbox" disabled name="place_icon_post" id="place_icon_post" value="yes"> <span class="cnss_posts" style="font-size: 15px;"><strong>Place them before or after the content of the post</strong></span>
                                 <table id="bef_aft_post">
                                     <tr>
@@ -66,7 +66,7 @@ function cnss_social_share_option_fn()
                                 </table>
                             </td>
                         </tr>
-                        <tr valign="top">
+                        <tr class="tab_align_top">
                             <td><input type="checkbox" disabled name="place_icon_page" id="place_icon_page" value="yes"> <span class="cnss_posts" style="font-size: 15px;"><strong>Display them either before or after the page content</strong></span>
                                 <table id="bef_aft_page">
                                     <tr>
